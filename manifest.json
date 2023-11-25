@@ -1,0 +1,35 @@
+{
+		"manifest_version": 3,
+		"name": "Copy and Go (Beta)",
+		"description": "Copy text and goto links with ease",
+		"version": "1.0.0",
+		"background": {
+				"service_worker": "service-worker.js",
+				"type": "module"
+		},
+		"commands": {
+				"candg-copy-text": {
+						"suggested-key": {
+								"default": "Ctrl-Shift-1"
+						},
+						"description": "Run the copy-and-go version of copy text"
+				}
+		},
+		"content_scripts": [
+				{
+						"js": ["scripts/content.js"],
+						"matches": [
+								"<all_urls>"
+						]
+				}
+		],
+		"action": {
+				"default_popup": "hello.html"
+		},
+		"icons": {
+				"16": "icons/icon16.png",
+				"32": "icons/icon32.png",
+				"48": "icons/icon48.png",
+				"128": "icons/icon128.png"
+		}
+}

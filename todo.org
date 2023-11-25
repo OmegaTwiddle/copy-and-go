@@ -1,0 +1,30 @@
+* Define the feature set.
+** Define the user and main use cases
+** Pick top 1 - 2, implement them.
+** User: A developer and/or operations consultant who needs to copy many items in quick succession, wishing to do so without using the mouse.
+** User: Wishing to traverse links / click elements, primarily using the keyboard.
+
+* Bugs / TODOS
+** Update position when things change, or build cards right when user pushes command.
+** Place small codes above middle of the text?
+** DONE Turn copyString into text (remove html elements like <span>)
+** DONE Enable easily-typable strings (e.g. don't allow prefixes with multiple
+** DONE Allow multi-character copy codes.
+** Find things that look like JSON or code. instead of taking all code elements
+
+
+** Add Unit tests
+** 
+
+* 
+** 
+*** 
+**** 
+
+* Long term feature requests:
+** TODO OCR
+** TODO email
+** TODO integration with voice control
+** 
+
+
