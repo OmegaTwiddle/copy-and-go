@@ -30,11 +30,6 @@ function isHidden(el) {
 		return (el.offsetParent === null)
 }
 
-window.addEventListener('load', function () {
-		console.log("It's loaded!");
-		addCopyMarkers();
-		addLinkMarkers();
-})
 
 function getText(c) {
 		// TODO: Should it be one or the other? how do these really differ? User can configure it?
@@ -143,7 +138,6 @@ function takeAction(m) {
 		} else if (m.markerType == "goto") {
 				// open page;
 				window.open(m.linkUrl, '_blank').focus();
-				console.log("should open page", m.linkUrl);
 		}
 }
 
@@ -166,7 +160,6 @@ function processKeyEvent(zEvent, elems, markerType) {
 						hideMarker(m);
 				}
 				if (m.cardKey == currTypedCopyString) {
-						console.log("found!", m.copyString);
 						takeAction(m);
 						return true;
 				}
@@ -201,6 +194,7 @@ function toggleGoto() {
 		toggleMarkers("goto");
 }
 
+
 // TODO: how to allow user to choose their own keys in extension? commands API
 document.addEventListener ("keydown", function (zEvent) {
 		if (zEvent.key == "Escape") {
@@ -229,3 +223,8 @@ document.addEventListener ("keydown", function (zEvent) {
 
 });
 
+// Notes, when included as a content script, it was helpful to use onload. Now just run it directly.
+//window.addEventListener('load', function () {
+addCopyMarkers();
+addLinkMarkers();
+//})

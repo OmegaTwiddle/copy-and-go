@@ -4,8 +4,7 @@
 		"description": "Copy text and goto links with ease",
 		"version": "1.0.0",
 		"background": {
-				"service_worker": "service-worker.js",
-				"type": "module"
+				"service_worker": "background.js"
 		},
 		"commands": {
 				"candg-copy-text": {
@@ -15,21 +14,14 @@
 						"description": "Run the copy-and-go version of copy text"
 				}
 		},
-		"content_scripts": [
-				{
-						"js": ["scripts/content.js"],
-						"matches": [
-								"<all_urls>"
-						]
-				}
-		],
 		"action": {
-				"default_popup": "hello.html"
+				"default_title": "click to start copying."
 		},
 		"icons": {
 				"16": "icons/icon16.png",
 				"32": "icons/icon32.png",
 				"48": "icons/icon48.png",
 				"128": "icons/icon128.png"
-		}
+		},
+		"permissions": ["activeTab", "scripting"]
 }
