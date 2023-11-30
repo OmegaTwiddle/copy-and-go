@@ -2,7 +2,7 @@
 		"manifest_version": 3,
 		"name": "Copy and Go (Beta)",
 		"description": "Copy text and goto links with ease",
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"background": {
 				"service_worker": "background.js"
 		},
