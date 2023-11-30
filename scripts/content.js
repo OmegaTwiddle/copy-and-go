@@ -1,21 +1,82 @@
-// TODO: fix globals...
-var markers = [];
-var currentlyShowing = false;
-var currTypedCopyString = "";
-var currMarkerType = "";
 
+if (typeof HintMarker === "function") {
+} else {
+		// Note, inspired by vimium.
+		window.HintMarker = class {
+				element;
+				markerType;
+				copyString;
+				linkUrl;
+				cardKey;
+		}
 
-// Note, inspired by vimium.
-class HintMarker {
-		element;
-		markerType;
-		copyString;
-		linkUrl;
-		cardKey;
+		window.markers = [];
+		window.currentlyShowing = false;
+		window.currTypedCopyString = "";
+		window.currMarkerType = "";
+
+		// TODO: how to allow user to choose their own keys in extension? commands API
+		document.addEventListener ("keydown", function (zEvent) {
+				if (zEvent.key == "Escape") {
+						resetMarkerState();
+						return;
+				}
+
+				if (currentlyShowing) {
+						var foundFullKey = processKeyEvent(zEvent, markers, currMarkerType);
+						if (foundFullKey) {
+								resetMarkerState();
+								return;
+						}
+				}
+
+				// TODO: build "list of actions", though maybe just copy and goto for now.
+				// if (keyMatches(zEvent, "Z")) {
+				// 		toggleCopy();
+				// 		window.currMarkerType = "copy";
+				// } else if (keyMatches(zEvent, "X")) {
+				// 		toggleGoto();
+				// 		window.currMarkerType = "goto";
+				// } else if (keyMatches(zEvent, "T")) {
+				// 		// TODO: Try to do "token matching" within JSON content.
+				// }
+
+		});
+
+		// Notes, when included as a content script, it was helpful to use onload. Now just run it directly.
+		//window.addEventListener('load', function () {
+		addCopyMarkers();
+		addLinkMarkers();
+
+		// This should only be run when users push the "action command", so run the command.
+		// toggleCopy();
+		// window.currMarkerType = "copy";
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function buildCopyKeys(maxMarkers) {
-		var chars = "FDSJKL";
+		//var chars = "FDSJKL";
+		var chars = window.charsToUse;
 		var copyKeys = [""];
 		while (copyKeys.length < maxMarkers) {
 				const e = copyKeys.shift();
@@ -67,7 +128,6 @@ function addMarkers(divType, markerType) {
 		const elems = findElements(divType, markerType);
 		if (elems) {
 				var tmpCopyKeys = buildCopyKeys(elems.length);
-				console.log(tmpCopyKeys);
 				var markerIndex = 0;
 				var nextChar = "A";
 				for (const c of elems) {
@@ -149,6 +209,7 @@ function processKeyEvent(zEvent, elems, markerType) {
 
 		currTypedCopyString += zEvent.key.toUpperCase();
 		for (const m of markers) {
+				//console.log("checking marker for ", currTypedCopyString, "...", m);
 				if (m.markerType != markerType) {
 						continue;
 				}
@@ -195,36 +256,3 @@ function toggleGoto() {
 }
 
 
-// TODO: how to allow user to choose their own keys in extension? commands API
-document.addEventListener ("keydown", function (zEvent) {
-		if (zEvent.key == "Escape") {
-				resetMarkerState();
-				return;
-		}
-
-		if (currentlyShowing) {
-				var foundFullKey = processKeyEvent(zEvent, markers, currMarkerType);
-				if (foundFullKey) {
-						resetMarkerState();
-						return;
-				}
-		}
-
-		// TODO: build "list of actions", though maybe just copy and goto for now.
-		if (keyMatches(zEvent, "Z")) {
-				toggleCopy();
-				currMarkerType = "copy";
-		} else if (keyMatches(zEvent, "X")) {
-				toggleGoto();
-				currMarkerType = "goto";
-		} else if (keyMatches(zEvent, "T")) {
-				// TODO: Try to do "token matching" within JSON content.
-		}
-
-});
-
-// Notes, when included as a content script, it was helpful to use onload. Now just run it directly.
-//window.addEventListener('load', function () {
-addCopyMarkers();
-addLinkMarkers();
-//})

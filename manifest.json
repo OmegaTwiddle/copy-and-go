@@ -7,9 +7,15 @@
 				"service_worker": "background.js"
 		},
 		"commands": {
+				"_execute_action": {
+						"suggested-key": {
+								"default": "Shift+Alt+Z"
+						},
+						"description": "Default action to start."
+				},
 				"candg-copy-text": {
 						"suggested-key": {
-								"default": "Ctrl-Shift-1"
+								"default": "Shift+Alt+X"
 						},
 						"description": "Run the copy-and-go version of copy text"
 				}
@@ -23,5 +29,10 @@
 				"48": "icons/icon48.png",
 				"128": "icons/icon128.png"
 		},
-		"permissions": ["activeTab", "scripting"]
+		"options_ui": {
+				"page": "options.html",
+				"open_in_tab": false
+		},
+		"permissions": ["activeTab", "scripting", "storage"]
 }
+

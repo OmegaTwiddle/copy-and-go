@@ -1,30 +1,44 @@
 * Define the feature set.
-** Define the user and main use cases
-** Pick top 1 - 2, implement them.
+** DONE Define the user and main use cases
+** DONE Pick top 1 - 2, implement them.
 ** User: A developer and/or operations consultant who needs to copy many items in quick succession, wishing to do so without using the mouse.
 ** User: Wishing to traverse links / click elements, primarily using the keyboard.
 
 * Bugs / TODOS
-** Update position when things change, or build cards right when user pushes command.
+** TODO: P0 integrate the keyboard shortcut into "run the action"
+*** Update the "action" to be a keyboard shortcut to open the extension action (one copy, one goto)
+** Consider how to support the user "open multiple tabs" in one go
+** Consider whether the cards should always be visible? Or only on some sites? or user can configure this?
+** Often the cards are laid on top of the text, figure out best way to keep text visible
+** Lettering System
+*** Allow user to configure it.
+*** Have it such that keys are "left-handed" or "right-handed" (allow configuring, since some users use different keyboard setup.
+** Allow "backspace" to "delete" those that have already been typed.
+** Consider graying out the cards, instead of fully hiding them (or allow this to be configurable)
+** Support scrolling (buggy right now, scrolling deletes them apparently)
+** Focus on the primary singular use case (e.g. copy code)
+** DONE Share with 2 friends and get feedback.
+*** Consider sharing with more.
+** Consider publishing to the public
+** TODO Update position when things change, or build cards right when user pushes command.
 ** Place small codes above middle of the text?
 ** DONE Turn copyString into text (remove html elements like <span>)
 ** DONE Enable easily-typable strings (e.g. don't allow prefixes with multiple
 ** DONE Allow multi-character copy codes.
 ** Find things that look like JSON or code. instead of taking all code elements
-
-
-** Add Unit tests
+** Add a "donate coffee" button
 ** 
 
-* 
+
+
+
+* Add Unit tests
+** Marker placement
+** Marker text creation (no full node exists as a prefix of another)
 ** 
-*** 
-**** 
 
 * Long term feature requests:
 ** TODO OCR
 ** TODO email
 ** TODO integration with voice control
-** 
-
 
